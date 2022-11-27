@@ -1,0 +1,28 @@
+﻿
+        <li class="page-index1__listContentUl_li">
+            <a class="page-index1__listContentUl_A" href="/details?id=@id">
+                <h2 class="page-index1__listContentUl_header">@header</h2>
+                <p class="page-index1__listContentUl_desc">
+                    <span class="page-index1__listContentUl_descText">@date</span>
+                    <span class="page-index1__listContentUl_descText accent">&nbsp;⁃&nbsp;</span>
+                    <span class="page-index1__listContentUl_descText" style="color: @color;">@category</span>
+                </p>
+            </a>
+        </li>
+
+@code {
+    [Parameter]
+    public int id { get; set; }
+
+    [Parameter]
+    public string header { get; set; }
+
+    [Parameter]
+    public string date { get; set; }
+
+    [Parameter]
+    public string category { get; set; }
+
+    [Parameter]
+    public string color { get; set; }
+}

@@ -1,0 +1,48 @@
+﻿@model Project.ViewModels.NewsHomeViewModel
+
+<section class="page-index1">
+    <div class="page-index1__content">
+        @(Model.MainNews != null ? await Html.RenderComponentAsync<Project.Views.Shared.Components.Pages.MainTodayNews>(RenderMode.ServerPrerendered, new
+        { id = Model.MainNews.Id, header = Model.MainNews.Header, date = Model.MainNews.CreatedAt.ToLongDateString(),
+            category = Model.MainNews.Category.Name, color = Model.MainNews.Category.Color, image = Model.MainNews.ImageLink, context = Model.MainNews.Context }): null)
+
+        <div class="page-index1__list">
+            <div class="page-index1__listHeader">
+                <h6 class="page-index1__listHeader_text">Discover something new</h6>
+            </div>
+            <ul class="page-index1__listContent">
+                @foreach (var news in Model.MainNewses)
+                {
+                    @(await Html.RenderComponentAsync<Project.Views.Shared.Components.Pages.MainNewses>(RenderMode.ServerPrerendered, new
+                { id = news.Id, header = news.Header, date = news.CreatedAt.ToLongDateString(), category = news.Category.Name, color = news.Category.Color }
+               ))
+                }
+            </ul>
+        </div>
+    </div>
+</section>
+<section class="page-index2">
+    @(await Html.RenderComponentAsync<Project.Views.Shared.Components.Pages.FillEmail>(RenderMode.ServerPrerendered))
+</section>
+<section class="page-index3">
+    <div class="page-index3__items">
+        @foreach (var news in Model.News)
+        {
+            if (news.Descriptions.Count <= 0)
+            {
+                @(await Html.RenderComponentAsync<Project.Views.Shared.Components.Pages.NewsByCategoryDemo>(RenderMode.ServerPrerendered, new
+            { header = news.Header, date = news.CreatedAt.ToLongDateString(), category = news.Category.Name,
+                color = news.Category.Color, context = news.Context }))
+            }
+            else
+            {
+                @(await Html.RenderComponentAsync<Project.Views.Shared.Components.Pages.NewsByCategoryFull>(RenderMode.ServerPrerendered, new
+            { header = news.Header, date = news.CreatedAt.ToLongDateString(), category = news.Category.Name,
+               color = news.Category.Color, context = news.Context, image = news.ImageLink}))
+            }
+
+        }
+    </div>
+    @(await Html.RenderComponentAsync<Project.Views.Shared.Components.Pages.GoArchive>(RenderMode.ServerPrerendered, new
+            {header = "Go back in time", textlink = "View archive"}))
+</section>

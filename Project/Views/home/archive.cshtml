@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Project.Models.News>
+
+    <section class="page-index1">
+        <div class="page-archive__content">
+            <div class="page-archive__header">
+                <a class="page-index3__itemFullLinkText page-index3__goBack_link page-archive__link" href="/">
+                    ←&nbsp;View the latest
+                </a>
+                <h1 class="page-archive__header_text">The Archive</h1>
+                <div class="page-archive__search">
+                    <form class="page-archive__search-form">
+                        <input type="text" class="page-archive__search-input" maxlength="256" name="Search" fs-cmsfilter-field="*" data-name="Search" placeholder="Search" id="search" autocomplete="off" />
+                    </form>
+                </div>
+            </div>
+            <div class="page-index3__items">
+                @foreach (var news in Model)
+                {
+                    @(await Html.RenderComponentAsync<Project.Views.Shared.Components.Pages.NewsByCategoryFull>(RenderMode.ServerPrerendered, new
+            { id = news.Id, header = news.Header, date = news.CreatedAt.ToLongDateString(), category = news.Category.Name,
+               color = news.Category.Color, context = news.Context, image = news.ImageLink}))
+                }
+            </div>
+            @(await Html.RenderComponentAsync<Project.Views.Shared.Components.Pages.GoArchive>(RenderMode.ServerPrerendered, new
+            {header = "Back to the present", textlink = "View the latest"}))
+        </div>
+    </section>
+<script type="text/javascript">
+    let timeout = null;
+    document.getElementById('search').addEventListener('keyup', function (e) {
+        clearTimeout(timeout);
+        timeout = setTimeout(function () {
+            search()
+        }, 1);
+    });
+</script>

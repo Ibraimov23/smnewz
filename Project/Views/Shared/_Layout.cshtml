@@ -1,0 +1,139 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Short News - Artificial Intelligence News Generator. Marketing partner: https://scalee.me/</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Merriweather:300,300italic,400,400italic,700,700italic,900,900italic%7CInconsolata:400,700%7CNeuton:200,300,regular,700,800%7CInter:100,200,300,regular,500,600,700,800,900%7CNoto+Sans:regular,700%7CDM+Sans:regular,500,700" media="all">
+    <link rel="icon" href="https://smnewz.com/wp-content/uploads/2022/06/cropped-logo-512x512-1-1-32x32.jpg" sizes="32x32">
+    <link rel="icon" href="https://smnewz.com/wp-content/uploads/2022/06/cropped-logo-512x512-1-1-192x192.jpg" sizes="192x192">
+    <link rel="apple-touch-icon" href="https://smnewz.com/wp-content/uploads/2022/06/cropped-logo-512x512-1-1-180x180.jpg">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/style.css" />
+    <link rel="stylesheet" href="~/css/admin.css" />
+</head>
+<body>
+    <header class="header-main">
+        <div class="header__content">
+            <div class="header__logo">
+                <a class="header__logo_url" href="/">
+                    <img class="header__logo_img" src="/images/logo.png" />
+                </a>
+            </div>
+            <nav class="header__nav-menu">
+                <div class="header__nav-pc">
+                    <ul class="header__nav-items">
+                        <li class="header__nav-items_item"><a href="/">All</a></li>
+                        <li class="header__nav-items_itemLine">-</li>
+                        <li class="header__nav-items_item"><a href="/categories?category=technology">Technology</a></li>
+                        <li class="header__nav-items_itemLine">-</li>
+                        <li class="header__nav-items_item"><a href="/categories?category=entertainment">Entertainment</a></li>
+                        <li class="header__nav-items_itemLine">-</li>
+                        <li class="header__nav-items_item"><a href="/categories?category=politics">Politics</a></li>
+                    </ul>
+                </div>
+                <div class="header__nav-mobile">
+                    <ul class="header__nav-mobile_items">
+                        <li class="header__nav-mobile_item"><a class="header__nav-mobile_link" href="/">All</a></li>
+                        <li class="header__nav-mobile_item"><a class="header__nav-mobile_link" href="/categories?category=technology">Technology</a></li>
+                        <li class="header__nav-mobile_item"><a class="header__nav-mobile_link" href="/categories?category=entertainment">Entertainment</a></li>
+                        <li class="header__nav-mobile_item"><a class="header__nav-mobile_link" href="/categories?category=politics">Politics</a></li>
+                    </ul>
+                </div>
+            </nav>
+            <div class="header__buttons">
+                <div class="header__subscribe">
+                    <button class="header__subscribe_button" onclick="subscript('flex')">
+                        <span>Subscribe</span>
+                    </button>
+                </div>
+                <div class="header__search">
+                    <a class="header__search_button" href="/archive">
+                        <img class="header__search_button_img" src="/images/search.svg" />
+                    </a>
+                </div>
+                <div class="header__hamburger">
+                    <a class="header__hamburger_button" onclick="navmobile()">
+                        <img class="header__hamburger_button_img" src="/images/burgerIcon.svg" />
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="pages">
+        <div class="container">
+            @RenderBody()
+        </div>
+    </main>
+    <footer class="footer-main">
+        <div class="container">
+            <div class="footer-main__block">
+                <div class="footer-main__contents">
+                    <div class="footer-main__content1">
+                        <h3 class="footer-main__content1_header">Today’s trending stories distilled into one-minute bites</h3>
+                        <p class="footer-main__content1_desc">Delivered to your inbox, daily</p>
+                    </div>
+                    <div class="footer-main__content2">
+                        <div class="footer-main__content2Logo">
+                            <a style="margin-bottom: 0px;" href="#">
+                                <img src="/images/logo.png" loading="lazy" alt="Summari logo"
+                                     class="footer-main__content2Logo_img" />
+                            </a>
+                            <a style="margin-bottom: 0px;" href="#">About us</a>
+                        </div>
+                        <div class="footer-main__content2Link">
+                            <div class="footer-main__content2Link_header">Follow us</div>
+                            <div class="footer-main__content2LinkLogo">
+                                <a href="https://twitter.com/shortme_ai" target="_blank" class="footer-main__content2LinkTwitter
+	    			    			    footer-main__content2LinkLogo_img"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <div class="subscribe-main">
+       @if (!User.Identity.IsAuthenticated){@await Component.InvokeAsync("Subscription")}
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajax-unobtrusive/3.2.6/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="_framework/blazor.server.js" autostart="false"></script>
+    <script>
+        async function connectionDown(options) {
+            for (let i = 0; i < options.maxRetries; i++) {
+                await this.delay(options.retryIntervalMilliseconds);
+                if (this.isDisposed) {
+                    break;
+                }try {
+                    const result = await window.Blazor.reconnect();
+                    if (!result) {
+                    } else {
+                        return;
+                    }
+                } catch (err) {
+                }
+            }
+            location.reload();
+        }
+        function delay(durationMilliseconds) {
+            return new Promise(resolve => setTimeout(resolve, durationMilliseconds));
+        }
+        function connectionUp(e) {
+        }
+        window.Blazor.start({
+            reconnectionOptions: {
+                maxRetries: 30,
+                retryIntervalMilliseconds: 500,
+            },
+            reconnectionHandler: {
+                onConnectionDown: e => connectionDown(e),
+                onConnectionUp: e => connectionUp(e)
+            }
+        });
+    </script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

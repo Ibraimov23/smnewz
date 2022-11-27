@@ -1,0 +1,138 @@
+﻿@using Project.Models
+
+<div class="page-index3__itemFull .page-index3__item-absolute">
+    <div class="page-index3__itemFullBlock">
+        <div class="page-index3__itemFullRelativ">
+            <div class="page-index3__itemFullContent">
+                <div class="page-index3__itemFullHeader">
+                    <div class="page-index3__itemFullHeaderText">
+                        <div class="page-index3__itemContentTextCateg_category" style="background-color: @color;">
+                            <span>@category</span>
+                        </div>
+                        <a class="page-index3__itemContentTextHead_a" href="/details?id=@id">
+                            <h3 class="page-index3__itemContentTextHead_header">@header</h3>
+                        </a>
+                        <p class="page-index3__itemContentTextCateg_date">@date</p>
+                    </div>
+                    <a class="page-index3__itemFullLinkText" href="/details?id=@id">
+                        Go deeper&nbsp;→
+                    </a>
+                </div>
+                <div class="page-index3__itemFullContext">
+                    <div class="page-index3__itemFullContextText">
+                        <h6 class="page-index3__itemFullContextText_header">The context</h6>
+                        <p class="page-index3__itemFullContextText_desc">@context</p>
+                    </div>
+                    <div class="page-index3__itemContentLink">
+                        <div class="page-index3__itemLinkBlock">
+                            <img class="page-index3__itemLinkIcon" src="./images/twitterIcon.svg" />
+                            <a class="social-share-code" href="https://twitter.com/intent/tweet?" target="_blank" alt="Tweet This" title="Tweet" onclick="window.open('https://twitter.com/intent/tweet?text=%20Check this out! ' + encodeURIComponent(document.URL) + '&amp;t=' + encodeURIComponent(document.URL), 'targetWindow', 'toolbar=no,location=0,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=250'); return false;">
+                            </a>
+                        </div>
+                        <div class="page-index3__itemLinkBlock">
+                            <img class="page-index3__itemLinkIcon" src="./images/facebookIcon.svg" />
+                            <a class="social-share-code" href="https://www.facebook.com/sharer/sharer.php?u=&amp;t=" title="Share on Facebook" target="_blank" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(document.URL) + '&amp;t=' + encodeURIComponent(document.URL), 'targetWindow', 'toolbar=no,location=0,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=250');
+                                        return false;">
+                            </a>
+                        </div>
+                        <div class="page-index3__itemLinkBlock">
+                            <img class="page-index3__itemLinkIcon" src="./images/linkedinIcon.svg" />
+                            <a class="social-share-code" href="http://www.linkedin.com/shareArticle?mini=true&amp;url=&amp;title=&amp;summary=&amp;source=" target="_blank" title="Share on LinkedIn" onclick="window.open('http://www.linkedin.com/shareArticle?mini=true&amp;url=' + encodeURIComponent(document.URL) + '&amp;t=' + encodeURIComponent(document.URL), 'targetWindow', 'toolbar=no,location=0,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=600'); return false;">
+                            </a>
+                        </div>
+                        <div class="page-index3__itemLinkBlock">
+                            <img class="page-index3__itemLinkIcon" src="./images/emailIcon.svg" />
+                            <a class="social-share-code" href="mailto:?subject=&amp;body=:%20" target="_blank" title="Email" onclick="window.open('mailto:?subject=' + '&amp;body=' + encodeURIComponent(document.URL));
+                            		   return false;">
+                            </a>
+                        </div>
+                        <div class="page-index3__itemLinkBlock">
+                            <img class="page-index3__itemLinkIcon" src="./images/redditIcon.svg" />
+                            <a class="social-share-code" href="http://www.reddit.com/submit?url=&amp;title=" target="_blank" title="Submit to Reddit" onclick="window.open('http://www.reddit.com/submit?url=' + encodeURIComponent(document.URL) + '&amp;t=' + encodeURIComponent(document.URL), 'targetWindow', 'toolbar=no,location=0,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=600'); return false;">
+                            </a>
+                        </div>
+                        <div class="page-index3__itemLinkBlock">
+                            <img class="page-index3__itemLinkIcon" src="./images/whatsappIcon.svg" />
+                            <a class="social-share-code" href="#" target="_blank">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <a class="page-index3__itemFullImage"
+                   style="background-image: url('@image');"
+                   href="#">
+                </a>
+            </div>
+            <div class="page-index3__itemFullContentMobile">
+                <div class="page-index3__itemFullContentMobileHeader">
+                    <div class="page-index3__itemFullContentMobileHeader2377">
+                        <div class="page-index3__itemContentTextCateg">
+                            <div class="page-index3__itemContentTextCateg_category" style="background-color: @color;">
+                                <span>@category</span>
+                            </div>
+                            <p class="page-index3__itemContentTextCateg_date">@date</p>
+                        </div>
+                        <a class="page-index3__itemContentTextHead_a" href="">
+                            <h3 class="page-index3__itemContentTextHead_header">@header</h3>
+                        </a>
+                    </div>
+                    <a class="page-index3__itemFullImage page-index3__itemFullImageMobile"
+                       style="background-image: url('@image');"
+                       href="#">
+                    </a>
+                </div>
+                <div class="page-index3__itemFullContentMobileDesc">
+                    <div class="page-index3__itemFullContentMobileDesc2377">
+                        <h6 class="page-index3__itemFullContentMobileDesc_header">The context</h6>
+                        <p class="page-index3__itemFullContentMobileDesc_desc">@context</p>
+                    </div>
+                    <a class="page-index3__itemFullLinkText" href="/details?id=@id">
+                        Go deeper&nbsp;→
+                    </a>
+                </div>
+                <div class="page-index3__itemContentLink">
+                    <div class="page-index3__itemLinkBlock">
+                        <img class="page-index3__itemLinkIcon" src="./images/twitterIcon.svg" />
+                    </div>
+                    <div class="page-index3__itemLinkBlock">
+                        <img class="page-index3__itemLinkIcon" src="./images/facebookIcon.svg" />
+                    </div>
+                    <div class="page-index3__itemLinkBlock">
+                        <img class="page-index3__itemLinkIcon" src="./images/linkedinIcon.svg" />
+                    </div>
+                    <div class="page-index3__itemLinkBlock">
+                        <img class="page-index3__itemLinkIcon" src="./images/emailIcon.svg" />
+                    </div>
+                    <div class="page-index3__itemLinkBlock">
+                        <img class="page-index3__itemLinkIcon" src="./images/redditIcon.svg" />
+                    </div>
+                    <div class="page-index3__itemLinkBlock">
+                        <img class="page-index3__itemLinkIcon" src="./images/whatsappIcon.svg" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page-index3__itemLine"></div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public int id { get; set; }
+
+    [Parameter]
+    public string header { get; set; }
+
+    [Parameter]
+    public string date { get; set; }
+    [Parameter]
+    public string context { get; set; }
+    [Parameter]
+    public string image { get; set; }
+
+    [Parameter]
+    public string category { get; set; }
+
+    [Parameter]
+    public string color { get; set; }
+}

@@ -1,0 +1,14 @@
+﻿@model Project.ViewModels.LoginViewModel
+
+<div class="page-adminLogin">
+    <div class="page-adminLogin__form animated flipInX">
+        <h2>Login To Your Account</h2>
+        <p class="valid">Valid. Please wait a moment.</p>
+        <p class="error">Error. Please enter correct Username &amp; password.</p>
+        <form method="post" class="loginbox" autocomplete="off" asp-action="login" asp-route-returnUrl="@Model.ReturnUrl">
+            <input asp-for="UserName" placeholder="Username" type="text" id="username" />
+            <input asp-for="Password" placeholder="Password" type="password" id="password" />
+            <button id="submit">Login</button>
+        </form>
+    </div>
+</div>

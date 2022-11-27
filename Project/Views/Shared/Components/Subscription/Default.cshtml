@@ -1,0 +1,51 @@
+﻿@model Project.ViewModels.NewsHomeViewModel
+
+<div class="subscribe-main__content">
+    <div class="subscribe-main__email-sample">
+        <div class="subscribe-main__email-sample__content-head">
+            <div class="subscribe-main__email-sample__logo">
+                <img src="./images/icon256.png" />
+            </div>
+            <div class="subscribe-main__email-sample__text">
+                <div class="subscribe-main__email-sample__text-headers">
+                    <div class="subscribe-main__email-sample__text-logo">Short News</div>
+                    <div class="subscribe-main__email-sample__text-online">2m ago</div>
+                </div>
+                <div class="subscribe-main__email-sample__text-date">@ViewData["date"]</div>
+            </div>
+        </div>
+        <div class="subscribe-main__email-sample__content-desc">
+            <div class="subscribe-main__email-sample__text-date">@ViewData["date"]</div>
+            <div class="subscribe-main__email-sample__text-date">smnewz headlines<br>&zwj;</div>
+            <div class="subscribe-main__email-sample__content-desc-lists">
+                @foreach (var item in Model.MainNewses)
+                {
+                   <div class="subscribe-main__email-sample__content-desc-list">
+                       <h3>@char.ConvertFromUtf32(int.Parse(item.Category.Emoji.Substring(2), System.Globalization.NumberStyles.HexNumber)) @item.Header</h3>
+                       <p>@item.Context</p>               
+                       @if(item.Descriptions != null){<a href="/details?id=@item.Id">Go deeper →</a>}
+                   </div>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="subscribe-main__email-filling">
+        <img src="./images/logo.png" width="150" />
+        <h3 class="subscribe-main__email-filling-header">Today’s trending stories distilled into one-minute bites</h3>
+        <p class="subscribe-main__email-filling-desc">Delivered right to your inbox, daily</p>
+        <div class="subscribe-main__email-filling-mail">
+            <form class="subscribe-main__email-filling-email-form" method="post" action="/subscription/create">
+                <div class="subscribe-main__email-filling-email-datas">
+                    <input type="email"
+                           class="subscribe-main__email-filling-email-field subscribe-main__email-filling-email-fid" maxlength="256" name="value" data-name="Email Value" placeholder="Email address" required="" />
+                    <input type="submit" data-wait="Please wait..." value="Subscribe"
+                           class="subscribe-main__email-filling-email-button">
+                </div>
+            </form>
+        </div>
+        <div><p class="subscribe-main__email-filling-show" onclick="subscript('none')">Show me the content</p></div>
+    </div>
+    <div class="subscribe-main__email-close" onclick="subscript('none')">
+        <img src="./images/subscription-close.svg" />
+    </div>
+</div>

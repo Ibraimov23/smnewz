@@ -1,0 +1,44 @@
+﻿@using Project.Models
+
+<div class="page-index1__card">
+    <div class="page-index1__cardInfo">
+        <h6 class="page-index1__cardInfo_text-category" style="color: @color;">@category</h6>
+        <p class="page-index1__cardInfo_text-date">@date</p>
+    </div>
+    <div class="page-index1__cardContent">
+        <div class="page-index1__cardContent-Header">
+            <a class="page-index1__cardContent-Header_text" href="#">@header</a>
+        </div>
+        <div class="page-index1__cardContent-Img"><a class="page-index1__cardContent-ImgUrl" style="background-image: url('@image');" href="#"></a></div>
+    </div>
+    <div class="page-index1__cardContext">
+        <h6 class="page-index1__cardContext_header">The context</h6>
+        <p class="page-index1__cardContext_desc">@context</p>
+    </div>
+    <div class="page-index1__cardLinkDetails">
+        <a class="page-index1__cardLinkDetails_a" href="/details?id=@id">
+            Go deeper &nbsp;→
+        </a>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public int? id { get; set; }
+
+    [Parameter]
+    public string header { get; set; }
+
+    [Parameter]
+    public string date { get; set; }
+    [Parameter]
+    public string context { get; set; }
+    [Parameter]
+    public string image { get; set; }
+
+    [Parameter]
+    public string category { get; set; }
+
+    [Parameter]
+    public string color { get; set; }
+}

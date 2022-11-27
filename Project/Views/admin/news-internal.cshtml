@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Project.Models.BulletInfo>
+
+<section class="page-adminIndex1">
+    <div class="container">
+        <div class="page-adminIndex1__newses">
+            <h3 class="page-adminIndex1__header">
+                <a class="page-adminIndex1__header_back" style="margin-bottom: 0px;" asp-action="news-description" asp-route-newsId="@ViewData["newsId"]">Back</a>
+                Monitoring internal descriptions(
+                <a style="margin-bottom: 0px;" asp-controller="news" asp-action="create-intern" asp-route-descId="@ViewData["descId"]">Create internal description in news</a>
+                )
+            </h3>
+            <div class="page-adminIndex1__table-wrap">
+                <table class="page-adminIndex1__table">
+                    <thead class="page-adminIndex1__thead-primary">
+                        <tr>
+                            <th>#</th>
+                            <th>Header</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody  class="result">
+                        @{int internId = 0; }
+                        @foreach (var intern in Model)
+                        {
+                            internId += 1;
+                            <tr>
+                                <th scope="row">@internId</th>
+                                <td>@intern.Slot</td>
+                                <td>
+                                    <div class="page-adminIndex1__tableAction">
+                                        <a onclick="remove('delnewsintern', @intern.Id, @intern.DescriptionId)" style="margin-bottom: 0px;">Delete</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>

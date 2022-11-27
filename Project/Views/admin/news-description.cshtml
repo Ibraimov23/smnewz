@@ -1,0 +1,45 @@
+﻿@model  IEnumerable<Project.Models.Description>
+
+<section class="page-adminIndex1">
+    <div class="container">
+        <div class="page-adminIndex1__newses">
+            <h3 class="page-adminIndex1__header">
+                <a class="page-adminIndex1__header_back" style="margin-bottom: 0px;" asp-action="index">Back</a>
+                Monitoring descriptions(
+                <a style="margin-bottom: 0px;" asp-controller="news" asp-action="create-desc" asp-route-newsId="@ViewData["newsId"]">Create description in news</a>
+                )
+            </h3>
+            <div class="page-adminIndex1__table-wrap">
+                <table class="page-adminIndex1__table" id="page-adminIndex1__table">
+                    <thead class="page-adminIndex1__thead-primary">
+                        <tr>
+                            <th>#</th>
+                            <th>Header</th>
+                            <th>Link</th>
+                            <th>Internal</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody class="result">
+                        @{int descId = 0; }
+                        @foreach (var desc in Model)
+                        {
+                            descId += 1;
+                            <tr>
+                                <th scope="row">@descId</th>
+                                <td>@desc.Header</td>
+                                <td>@desc.Link</td>
+                                <td><a style="margin-bottom: 0px;" asp-action="news-internal" asp-route-descId="@desc.Id">View</a></td>
+                                <td>
+                                    <div class="page-adminIndex1__tableAction">
+                                        <a onclick="remove('delnewsdesc', @desc.Id, @desc.NewsId)" style="margin-bottom: 0px;">Delete</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,51 @@
+﻿@model Project.ViewModels.NewsHomeViewModel
+
+<section class="page-index1">
+    <div class="page-sign-up__content">
+        <h1 class="page-sign-up__content_header">You're Subscribed</h1>
+        <div class="page-sign-up__desc">
+            <h3><strong>What to expect:</strong></h3>
+            <p>
+                Each weekday at 6 pm (PST), you'll receive an email with a rundown of the day's most talked-about headlines and some context to clue you in.
+            </p>
+            <p>
+                We're starting with the news you absolutely need to know in Politics, Technology, and Entertainment.
+            </p>
+            <p>🍿 - Entertainment</p><p>⚖️ - Politics</p><p>💻 - Technology</p><p>You can unsubscribe at any time.</p>
+        </div>
+        <h3 class="page-sign-up__content_view-text">This is what it looks like:</h3>
+        <div class="page-sign-up__view">
+            <div class="subscribe-main__email-sample__content-head">
+                <div class="subscribe-main__email-sample__logo">
+                    <img src="./images/icon256.png" />
+                </div>
+                <div class="subscribe-main__email-sample__text">
+                    <div class="subscribe-main__email-sample__text-headers">
+                        <div class="subscribe-main__email-sample__text-logo">Short News</div>
+                        <div class="subscribe-main__email-sample__text-online">2m ago</div>
+                    </div>
+                    <div class="subscribe-main__email-sample__text-date">@ViewData["date"]</div>
+                </div>
+            </div>
+            <div class="subscribe-main__email-sample__content-desc">
+                <div class="subscribe-main__email-sample__text-date">@ViewData["date"]</div>
+                <div class="subscribe-main__email-sample__text-date">smnewz headlines<br>&zwj;</div>
+                <div class="subscribe-main__email-sample__content-desc-lists">
+                    @foreach (var item in Model.MainNewses)
+                    {
+                        <div class="subscribe-main__email-sample__content-desc-list">
+                            <h3>@char.ConvertFromUtf32(int.Parse(item.Category.Emoji.Substring(2), System.Globalization.NumberStyles.HexNumber))&nbsp;@item.Header</h3>
+                            <p>@item.Context</p>
+                            @if (item.Descriptions != null)
+                            {<a href="/details?id=@item.Id">Go deeper →</a>}
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="page-sign-up__social">
+            <h4>Follow us on:<a href="https://twitter.com/shortme_ai" target="_blank">Twitter</a></h4>
+            <p>Write to us anytime at team@smnewz.com</p>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,76 @@
+﻿@model Project.ViewModels.NewsSubscriptAdminViewModel
+
+<section class="page-adminIndex1">
+    <div class="container">
+        <div class="page-adminIndex1__newses">
+            <h3 class="page-adminIndex1__header">Monitoring newses&nbsp;(<a href="/news/create" style="margin-bottom: 0px;">Create news</a>)</h3>
+            <div class="page-adminIndex1__table-wrap" id="page-adminIndex1__table-wrap">
+                <table class="page-adminIndex1__table">
+                    <thead class="page-adminIndex1__thead-primary">
+                        <tr>
+                            <th>#</th>
+                            <th>Header</th>
+                            <th>Context</th>
+                            <th>Category</th>
+                            <th>Description</th>
+                            <th>Date</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody class="result">
+                        @{int newsId = 0; }
+                        @foreach (News news in Model.Newses)
+                        {
+                            newsId += 1;
+                            <tr>
+                                <th scope="row">@newsId</th>
+                                <td>@news.Header</td>
+                                <td>@news.Context</td>
+                                <td>@news.Category.Name</td>
+                                <td><a style="margin-bottom: 0px;" asp-action="news-description" asp-route-newsId="@news.Id">View</a></td>
+                                <td>@news.CreatedAt.ToLongDateString()</td>
+                                <td>
+                                    <div class="page-adminIndex1__tableAction">
+                                        <a href="/details?id=@news.Id" style="margin-bottom: 0px;">View</a>
+                                        <span>|</span>
+                                        <a onclick="remove('deletenews', @news.Id ,0,false)" style="margin-bottom: 0px;">Delete</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                        </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="page-adminIndex1__users">
+            <h3 class="page-adminIndex1__header">Monitoring subscribers</h3>
+            <div class="page-adminIndex1__table-wrap">
+                <table class="page-adminIndex1__table">
+                    <thead class="page-adminIndex1__thead-primary">
+                        <tr>
+                            <th>#</th>
+                            <th>Email</th>
+                            <th>Date</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody class="result1">
+                      @{int subId = 0; }
+                      @foreach (Subscription sub in Model.Subscriptions)
+                      {
+                        subId += 1;
+                        <tr>
+                            <th scope="row">@subId</th>
+                            <td>@sub.Email</td>
+                            <td>@sub.CreatedAt.ToLongDateString()</td>
+                            <td>
+                                <a onclick="remove('deletesubscript', @sub.Id,0,true)" style="margin-bottom: 0px;">Delete</a>
+                            </td>
+                        </tr>
+                      }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>

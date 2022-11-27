@@ -1,0 +1,106 @@
+﻿@model Project.ViewModels.NewsHomeViewModel
+
+<section class="page-index1">
+    <div class="page-details__content">
+        <div class="page-details__contentImage">
+            <a class="page-details__contentImage_home-text" href="/">
+                ←&nbsp;Home
+            </a>
+            <a class="page-details__contentImage_img" style="background-image: url('@Model.MainNews.ImageLink');" href="#">
+            </a>
+        </div>
+        <div class="page-details__contentText">
+            <div class="page-details__contentText-headers">
+                <div class="page-details__contentText-headers_category" style="background-color: @ViewData["categColor"]">
+                    <p class="page-details__contentText-headers_categoryText">@ViewData["category"]</p>
+                </div>
+                <h1 class="page-details__contentText-headers_headerText">@Model.MainNews.Header</h1>
+                <p class="page-details__contentText-headers_dateText">@Model.MainNews.CreatedAt.ToLongDateString()</p>
+                <p class="page-details__contentText-headers_dateText"></p>
+                <div class="page-details__contentText-headers_nets">
+                    <div class="page-details__contentText-headers_net">
+                        <img class="page-details__contentText-headers_netImg" src="./images/twitterIcon.svg" />
+                        <div class="social-share-code">
+                            <a class="social-share-code" href="https://twitter.com/intent/tweet?" target="_blank" alt="Tweet This" title="Tweet" onclick="window.open('https://twitter.com/intent/tweet?text=%20Check this out! ' + encodeURIComponent(document.URL) + '&amp;t=' + encodeURIComponent(document.URL), 'targetWindow', 'toolbar=no,location=0,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=250'); return false;">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="page-details__contentText-headers_net">
+                        <img class="page-details__contentText-headers_netImg" src="./images/facebookIcon.svg" />
+                        <a class="social-share-code" href="https://www.facebook.com/sharer/sharer.php?u=&amp;t=" title="Share on Facebook" target="_blank" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(document.URL) + '&amp;t=' + encodeURIComponent(document.URL), 'targetWindow', 'toolbar=no,location=0,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=250');
+                                        return false;">
+                        </a>
+                    </div>
+                    <div class="page-details__contentText-headers_net">
+                        <img class="page-details__contentText-headers_netImg" src="./images/linkedinIcon.svg" />
+                        <a class="social-share-code" href="http://www.linkedin.com/shareArticle?mini=true&amp;url=&amp;title=&amp;summary=&amp;source=" target="_blank" title="Share on LinkedIn" onclick="window.open('http://www.linkedin.com/shareArticle?mini=true&amp;url=' + encodeURIComponent(document.URL) + '&amp;t=' + encodeURIComponent(document.URL), 'targetWindow', 'toolbar=no,location=0,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=600'); return false;">
+                        </a>
+                    </div>
+                    <div class="page-details__contentText-headers_net">
+                        <img class="page-details__contentText-headers_netImg" src="./images/emailIcon.svg" />
+                        <a class="social-share-code" href="mailto:?subject=&amp;body=:%20" target="_blank" title="Email" onclick="window.open('mailto:?subject=' + '&amp;body=' + encodeURIComponent(document.URL));
+                            		   return false;">
+                        </a>
+                    </div>
+                    <div class="page-details__contentText-headers_net">
+                        <img class="page-details__contentText-headers_netImg" src="./images/redditIcon.svg" />
+                        <a class="social-share-code" href="http://www.reddit.com/submit?url=&amp;title=" target="_blank" title="Submit to Reddit" onclick="window.open('http://www.reddit.com/submit?url=' + encodeURIComponent(document.URL) + '&amp;t=' + encodeURIComponent(document.URL), 'targetWindow', 'toolbar=no,location=0,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=600'); return false;">
+                        </a>
+                    </div>
+                    <div class="page-details__contentText-headers_net">
+                        <img class="page-details__contentText-headers_netImg" src="./images/whatsappIcon.svg" />
+                        <a class="social-share-code" href="whatsapp://send?text=https://www.bonsai.news/content/ethereum-falls-after-merge" target="_blank">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="page-details__contentText-context">
+                <h6 class="page-details__contentText-context_Header">The context</h6>
+                <p class="page-details__contentText-context_Desc">@Model.MainNews.Context</p>
+            </div>
+            <a class="page-details__contentImage_imgMobile" style="background-image: url('@Model.MainNews.ImageLink');" href="#">
+            </a>
+            @foreach (var i in Model.MainNews.Descriptions)
+            {
+                <div class="page-details__contentText-desc">
+                    <div class="page-details__contentText-descBlock">
+                        <h3>@i.Header</h3>
+                        <ul class="page-details__contentText-desc_texts">
+                            @foreach (var n in i.BulletInfo)
+                            {
+                               <li class="page-details__contentText-desc_text">
+                                  @n.Slot
+                               </li>
+                            }
+                        </ul>
+                        <a href="@i.Link" target="_blank">Go deeper →</a>
+                    </div>
+                </div>
+             }
+        </div>
+    </div>
+</section>
+<section class="page-index2">
+    @(await Html.RenderComponentAsync<Project.Views.Shared.Components.Pages.FillEmail>(RenderMode.ServerPrerendered))
+</section>
+<section class="page-index3">
+    <div class="page-index3__items">
+        @foreach (var news in Model.News)
+        {
+            if (news.Descriptions.Count <= 0)
+            {
+                @(await Html.RenderComponentAsync<Project.Views.Shared.Components.Pages.NewsByCategoryDemo>(RenderMode.ServerPrerendered, new
+            { header = news.Header, date = news.CreatedAt.ToLongDateString(), category = news.Category.Name,
+                color = news.Category.Color, context = news.Context }))
+            }
+            else
+            {
+                @(await Html.RenderComponentAsync<Project.Views.Shared.Components.Pages.NewsByCategoryFull>(RenderMode.ServerPrerendered, new
+            { id = news.Id, header = news.Header, date = news.CreatedAt.ToLongDateString(), category = news.Category.Name,
+               color = news.Category.Color, context = news.Context, image = news.ImageLink}))
+            }
+        }
+    </div>
+    @(await Html.RenderComponentAsync<Project.Views.Shared.Components.Pages.GoArchive>(RenderMode.ServerPrerendered, new
+            {header = "Go back in time", textlink = "View archive"}))
+</section>
